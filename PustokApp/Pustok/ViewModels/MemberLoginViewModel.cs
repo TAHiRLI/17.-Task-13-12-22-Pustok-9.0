@@ -13,5 +13,6 @@ namespace Pustok.ViewModels
         [Required]
         [MaxLength(20)]
         public string Password { get; set; }
+        public bool IsPersistent { get; set; }
     }
 }

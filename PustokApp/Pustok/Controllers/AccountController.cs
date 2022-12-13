@@ -111,7 +111,7 @@ namespace Pustok.Controllers
 
 
            
-            var result = await _signInManager.PasswordSignInAsync(appUser, memberLoginVm.Password, true, true);
+            var result = await _signInManager.PasswordSignInAsync(appUser, memberLoginVm.Password, memberLoginVm.IsPersistent, true);
 
             if (result.IsLockedOut)
             {

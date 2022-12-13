@@ -28,6 +28,12 @@
                                 <span class="text-danger" asp-validation-for="Password"></span>
 
                             </div>
+                            <div class="col-lg-6 mb--20">
+                                <label asp-for="IsPersistent">Keep me signed in</label>
+                                <input class="mb-0 form-control" type="checkbox" id="password" asp-for="IsPersistent">
+                                <span class="text-danger" asp-validation-for="IsPersistent"></span>
+
+                            </div>
                           
                             <div class="col-md-12">
                             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
