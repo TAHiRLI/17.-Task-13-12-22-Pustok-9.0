@@ -64,6 +64,7 @@ namespace Pustok.Controllers
                 return View();
             }
 
+              await _userManager.AddToRoleAsync(appUser, "Member");
 
 
 
@@ -77,8 +78,6 @@ namespace Pustok.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(MemberLoginViewModel memberLoginVm, string returnUrl)
         {
-            // vm de required yazmagima baxmayaraq field null olanda modelstate.isvalid true olur
-
             if (memberLoginVm.Password == null)
                 ModelState.AddModelError("Password", "This field Is required");
             if (memberLoginVm.Username == null)
@@ -88,14 +87,30 @@ namespace Pustok.Controllers
                 return View();
             }
 
-
             AppUser appUser = await _userManager.FindByNameAsync(memberLoginVm.Username);
-
             if (appUser == null)
             {
                 ModelState.AddModelError("", "Username or Password is incorrect !");
                 return View();
             }
+            // vm de required yazmagima baxmayaraq field null olanda modelstate.isvalid true olur
+
+
+
+            var roles = await _userManager.GetRolesAsync(appUser);
+            if (!roles.Contains("Member"))
+            {
+                ModelState.AddModelError("", "Username or Password is incorrect !");
+                return View();
+            }
+
+
+
+           
+
+
+
+           
             var result = await _signInManager.PasswordSignInAsync(appUser, memberLoginVm.Password, true, true);
 
             if (result.IsLockedOut)
@@ -124,7 +139,7 @@ namespace Pustok.Controllers
         //    }
         //    return Content("User Is logged Out");
         //}
-        [Authorize]
+        [Authorize(Roles ="Member")]
         public async Task<IActionResult> Profile()
         {
             AppUser appUser = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -205,6 +220,12 @@ namespace Pustok.Controllers
             }
 
             return RedirectToAction("index", "home");
+        }
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "home");
         }
 
 

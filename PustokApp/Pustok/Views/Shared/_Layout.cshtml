@@ -5,7 +5,7 @@
 
 @{
      AppUser user = null;
-    if(User.Identity.IsAuthenticated){
+    if(User.Identity.IsAuthenticated && User.IsInRole("Member")){
       user = _userManager.FindByNameAsync(User.Identity.Name).Result;
     }
     Dictionary<string, string> Settings = layoutService.GetSettings();
@@ -233,7 +233,7 @@
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
                                     <div class="login-block">
-                                        @if (User.Identity.IsAuthenticated)
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
                                         {
 
                                             <a asp-action="Profile" asp-controller="Account" class="font-weight-bold">@user.Fullname</a> <br>

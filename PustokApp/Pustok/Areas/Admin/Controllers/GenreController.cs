@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using Pustok.DAL;
@@ -11,6 +12,9 @@ using System.Linq;
 namespace Pustok.Areas.manage.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin, Editor")]
+
+
     public class GenreController : Controller
     {
 

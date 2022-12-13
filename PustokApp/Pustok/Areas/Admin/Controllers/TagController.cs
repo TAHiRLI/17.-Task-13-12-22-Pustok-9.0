@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pustok.Areas.Admin.ViewModels;
 using Pustok.DAL;
@@ -8,6 +9,9 @@ using System.Linq;
 namespace Pustok.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin, Editor")]
+
+
     public class TagController : Controller
     {
         private readonly PustokDbContext _context;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pustok.DAL;
 using Pustok.Models;
@@ -9,6 +10,7 @@ using System.Linq;
 namespace Pustok.Areas.manage.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="SuperAdmin, Admin, Editor")]
     public class AuthorController : Controller
     {
         private readonly PustokDbContext _context;

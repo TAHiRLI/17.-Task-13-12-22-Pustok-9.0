@@ -31,7 +31,7 @@
                                 <i class="fa fa-user"></i> Account
                                 Details
                             </a>
-                            <a href="login-register.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a asp-action="logout" asp-controller="Account"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </div>
                     <!-- My Account Tab Menu End -->
@@ -194,17 +194,17 @@
 
                                                 <div class="col-12  mb--30">
                                                     <label asp-for="CurrentPassword">CurrentPassword</label>
-                                                    <input asp-for="CurrentPassword" placeholder="CurrentPassword" type="text">
+                                                    <input asp-for="CurrentPassword" type="password" placeholder="CurrentPassword" type="text">
                                                     <span class="text-danger" asp-validation-for="CurrentPassword"></span>
                                                 </div>
                                                 <div class="col-lg-6 col-12  mb--30">
                                                     <label asp-for="NewPassword">NewPassword</label>
-                                                    <input asp-for="NewPassword" placeholder="New Password" type="text">
+                                                    <input asp-for="NewPassword" type="password" placeholder="New Password" type="text">
                                                     <span class="text-danger" asp-validation-for="NewPassword"></span>
                                                 </div>
                                                 <div class="col-lg-6 col-12  mb--30">
                                                     <label asp-for="ConfirmPassword">ConfirmPassword</label>
-                                                    <input asp-for="ConfirmPassword" placeholder="Confirm Password" type="text">
+                                                    <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password" type="text">
                                                     <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
                                                 </div>
                                              
